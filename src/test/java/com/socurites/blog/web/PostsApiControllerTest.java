@@ -15,6 +15,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.assertj.core.api.Assertions.*;
@@ -37,6 +38,7 @@ public class PostsApiControllerTest {
   }
 
   @Test
+  @WithMockUser(roles="USER")
   public void requestSave() {
     final String requestUrl = "http://localhost:" + port + "/api/v1/posts";
     final String title = "post's title";
@@ -58,6 +60,7 @@ public class PostsApiControllerTest {
   }
 
   @Test
+  @WithMockUser(roles="USER")
   public void requestUpdate() {
     final String title = "post's title";
     final String content = "post's content";
