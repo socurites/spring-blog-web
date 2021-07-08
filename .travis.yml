@@ -20,7 +20,7 @@ before_deploy:
   - mv spring-blog-web.zip deploy/spring-blog-web.zip
 
 deploy:
-  project: s3
+  provider: s3
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key: $AWS_SECRET_KEY
   bucket: socurites-travis-ci-build
