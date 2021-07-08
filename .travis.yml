@@ -20,15 +20,15 @@ before_deploy:
   - mv spring-blog-web.zip deploy/spring-blog-web.zip
 
 deploy:
-  - project: s3
-    access_key_id: $AWS_ACCESS_KEY
-    secret_access_key: $AWS_SECRET_KEY
-    bucket: socurites-travis-ci-build
-    region: ap-northeast-1
-    skip_cleanup: true
-    acl: private
-    local_dir: deploy
-    wait-until-deployed: true
+  project: s3
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+  bucket: socurites-travis-ci-build
+  region: ap-northeast-1
+  skip_cleanup: true
+  acl: private
+  local_dir: deploy
+  wait-until-deployed: true
 
 notifications:
   email:
