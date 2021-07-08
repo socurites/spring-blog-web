@@ -14,18 +14,18 @@ cache:
 script: "./gradlew clean build -x test"
 
 env:
-  - deploy-dir=before-deploy
-  - deipoy-zip=spring-blog-web.zip
+  - DEPLOY_DIR=before-deploy
+  - DEPLOY_ZIP=spring-blog-web.zip
 
 before_deploy:
 #  - zip -r spring-blog-web.zip *
 #  - mkdir -p deploy
 #  - mv spring-blog-web.zip deploy/spring-blog-web.zip
-  - mkdir -p $deploy-dir
-  - cp script/*.sh $deploy-dir
-  - cp appspec.yml $deploy-dir
-  - cp build/libs/*.jar deploy-dir
-  - zip -r $deploy-zip $before-deploy/*
+  - mkdir -p $DEPLOY_DIR
+  - cp script/*.sh $DEPLOY_DIR
+  - cp appspec.yml $DEPLOY_DIR
+  - cp build/libs/*.jar $DEPLOY_DIR
+  - zip -r $DEPLOY_ZIP $DEPLOY_DIR/*
 
 deploy:
   - provider: s3
@@ -41,7 +41,7 @@ deploy:
     access_key_id: $AWS_ACCESS_KEY
     secret_access_key: $AWS_SECRET_KEY
     bucket: socurites-travis-ci-build
-    key: $delpoy-zip
+    key: $DEPLOY_ZIP
     bundle_type: zip
     application: spring-blog-web
     deployment_group: spring-blog-web-group
