@@ -9,7 +9,7 @@ echo "> Git Pull"
 git pull
 
 echo "> Build..."
-./gradlew build
+./gradlew build -x test
 
 echo "> Move to $REPOSITORY"
 cd $REPOSITORY
@@ -33,4 +33,7 @@ JAR_NAME=$(ls -tr $REPOSITORY/ | grep jar | tail -n 1)
 
 echo "> JAR Name: $JAR_NAME"
 
-nohup java -jar $REPOSITORY/$JAR_NAME 2>&1 &
+nohup java -jar \
+  -Dspring.config.location=classpath:/application.yaml,/home/ec2-uesr/app/application-oauth.yaml,/home/ec2-uesr/app/application-real.yaml,/home/ec2-uesr/app/application-real-db.yaml \
+  -Dspring.profiles.active=real \
+  $REPOSITORY/$JAR_NAME 2>&1 &

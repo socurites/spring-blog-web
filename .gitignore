@@ -39,3 +39,5 @@ out/
 
 ### custom
 src/main/resources/application-oauth.yaml
+src/main/resources/application-real.yaml
+src/main/resources/application-real-db.yaml
